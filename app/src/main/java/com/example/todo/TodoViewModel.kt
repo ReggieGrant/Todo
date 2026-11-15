@@ -2,6 +2,10 @@ package com.example.todo
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TodoViewModel : ViewModel() {
     // _task i private -- only the ViewModel can modify it
@@ -22,6 +26,22 @@ class TodoViewModel : ViewModel() {
         if (title.isBlank()) return
         _tasks.add(Task(id = nextId++, title = title.trim()))
     }
+    // REMOVE THIS FUNCTION AFTER THE TESTS ARE COMPLETED
+    //fun addTask(title: String) {
+    // if (title.isBlank()) return
+    // viewModelScope.launch is used to launch a coroutine
+    // everything inside this block run on a background thread
+    // viewModelScope.launch{
+    // withContext switches the coroutine to the IO dispatcher
+    // is designed for slow operations such as network requests or disk I/O
+    // The main thread is completely free while other threads are blocked
+    //   withContext(Dispatchers.IO){
+    //   simulateSlowOperation() // now runs on a background thread -- UI is not affected
+    //  }
+    // }
+
+    // _tasks.add(Task(id = nextId++, title = title.trim()))
+    //  }
 
     // Removes a task from the list
     fun removeTask(taskId: Int) {
