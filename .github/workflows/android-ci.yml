@@ -9,10 +9,10 @@ jobs:
         uses: actions/checkout@v4 #download the test the VM
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
-          distribution: 'focal' # Use the focal version of OpenJDK
+          distribution: 'temurin' # Use the focal version of OpenJDK
 
       - name: Make gradlew executable #Make the script executable
         run: chmod +x ./gradlew #Make gradlew executable
