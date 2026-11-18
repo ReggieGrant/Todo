@@ -67,6 +67,7 @@ class TodoViewModelTest {
         _viewModel.removeTask(taskId)
 
         //Assert - check the result
+
         assertFalse(_viewModel.containsTask("Buy Groceries"))
 
     }
